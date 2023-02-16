@@ -27,13 +27,13 @@ for container in movie_div:
         #name
         name = container.h3.a.text
         titles.append(name)
-        
+
         #year
         year = container.h3.find('span', class_='lister-item-year').text
         years.append(year)
 
         # runtime
-        runtime = container.p.find('span', class_='runtime').text if container.p.find('span', class_='runtime').text else '-'
+        runtime = container.p.find('span', class_='runtime').text or '-'
         time.append(runtime)
 
         #IMDb rating
@@ -46,11 +46,11 @@ for container in movie_div:
 
         #there are two NV containers, grab both of them as they hold both the votes and the grosses
         nv = container.find_all('span', attrs={'name': 'nv'})
-        
+
         #filter nv for votes
         vote = nv[0].text
         votes.append(vote)
-        
+
         #filter nv for gross
         grosses = nv[1].text if len(nv) > 1 else '-'
         us_gross.append(grosses)
